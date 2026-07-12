@@ -15,7 +15,11 @@ the up-to-date participant count from the Telegram API:
 | Broadcast channel | `📣 Title — 56 789 subscribers` (via `channels.getFullChannel`) |
 | Basic group | `👥 Title — 12 members` (via `messages.getFullChat`) |
 | Private chat / bot | `👤 Private chat with Name — 2 participants` |
+| Secret chat | `🔒 Secret chat with Name — 2 participants` |
 | Saved Messages | `☁️ Saved Messages — it's just you here.` |
+
+If the API request fails but a locally cached count is available, the cached value is
+shown with a `(cached)` suffix.
 
 By default the result is shown only to you as an in-app bulletin notification.
 An optional setting sends it to the chat as a visible message instead.
@@ -25,6 +29,8 @@ An optional setting sends it to the chat as a visible message instead.
 Open **exteraGram Settings → Plugins → Chat Member Count**:
 
 - **Trigger command** — the text that activates the plugin (default `.members`).
+  It must start with `.`, `!` or `/` and contain no spaces, so ordinary messages
+  can never be intercepted; invalid values fall back to the default.
 - **Send result to chat** — off by default; when enabled, the count is sent as a
   regular message to the chat instead of a private notification.
 
